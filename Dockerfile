@@ -3,7 +3,7 @@ FROM python:3.7
 # Create and set app directory
 WORKDIR /usr/src/app
 
-COPY requirements.txt .
+COPY api/requirements.txt .
 
 # install dependencies
 RUN pip install -r api/requirements.txt

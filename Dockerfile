@@ -6,10 +6,10 @@ WORKDIR /usr/src/app
 COPY requirements.txt .
 
 # install dependencies
-RUN pip install -r requirements.txt
+RUN pip install -r api/requirements.txt
 
 # Bundle app source
-COPY main.py .
+COPY api/main.py .
 
 ## Run application
 ENTRYPOINT [ "uvicorn", "main:app", "--port", "8080" ]

@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 COPY requirements.txt .
 
 # install dependencies
-RUN pip install -r api/requirements.txt
+RUN pip install -r requirements.txt
 
 # Bundle app source
 COPY main.py .

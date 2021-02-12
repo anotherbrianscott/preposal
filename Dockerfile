@@ -9,7 +9,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Bundle app source
-COPY api/main.py .
+COPY main.py .
 
 ## Run application
 ENTRYPOINT [ "uvicorn", "main:app", "--port", "8080" ]

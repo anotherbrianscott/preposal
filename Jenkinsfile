@@ -10,7 +10,7 @@ pipeline {
     {
         stage ('Docker push') {
             steps {
-        docker.withRegistry('https://350919162912.dkr.ecr.us-west-2.amazonaws.com', 'AKIAVDNDJPQQP3QFCZ6P:AWSServiceRoleForECRReplication') {
+        docker.withRegistry('https://350919162912.dkr.ecr.us-west-2.amazonaws.com') {
         docker.image('demo').push('latest')
                   }
               }

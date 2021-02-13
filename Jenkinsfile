@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "350919162912.dkr.ecr.us-west-2.amazonaws.com/awareness"
-    registryCredential = 'dockerhub'
+    registryCredential = 'ecr'
     dockerImage = ''
   }
   agent { dockerfile true }

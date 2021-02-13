@@ -1,18 +1,20 @@
 pipeline {
-      environment {
+  environment {
     image = "awareness"
     ecr = "350919162912.dkr.ecr.us-west-2.amazonaws.com/awareness"
     ecrCred = 'ecr'
     dockerImage = ''
   }
-    agent { dockerfile true }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'python --version'
-            }
+  agent { dockerfile true }
+  stages {
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build ecr + ":$BUILD_NUMBER"
         }
-    stage('Deploy Master Image') {
+      }
+    }
+  stage('Deploy Master Image') {
     when {
       anyOf {
             branch 'master'
@@ -20,13 +22,25 @@ pipeline {
      }
       steps{
         script {
-          docker.withRegistry(ecr, ecrcred) {     
+          docker.withRegistry(ecrurl, ecrcred) {     
             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
 
           }
         }
       }
-     }    
     }
-}
+
+    stage('Remove Unused docker image - Master') {
+      when {
+      anyOf {
+            branch 'master'
+      }
+     }
+      steps{
+        sh "docker rmi $imagename:$BUILD_NUMBER"
+         sh "docker rmi $imagename:latest"
+
+      }
+    } // End of remove unused docker image for master
+  }  

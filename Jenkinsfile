@@ -1,5 +1,7 @@
 pipeline {
-    agent { dockerfile true }
+    agent 
+    label 'docker'
+    { dockerfile true }
     stages {
         stage('build') {
             steps {
@@ -7,4 +9,9 @@ pipeline {
             }
         }
     }
+       post {
+        always {
+            junit 'build/reports/**/*.xml'
+        }
+    } 
 }

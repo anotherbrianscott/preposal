@@ -10,7 +10,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build ecr + ":$BUILD_NUMBER"
+          sh "docker build --build-arg APP_NAME=receipts -t 350919162912.dkr.ecr.us-west-2.amazonaws.com/awareness:latest -f docker/prod/Dockerfile ."
         }
       }
     }

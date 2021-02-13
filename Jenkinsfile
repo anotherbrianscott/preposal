@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'python --version'
+                docker build -t "learinngapi"
             }
         }
     }

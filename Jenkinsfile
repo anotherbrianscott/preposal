@@ -1,9 +1,9 @@
 pipeline {
     agent { dockerfile true }
     stages {
-        stage('test') {
+        stage('build') {
             steps {
-                sh 'python --version'
+                sh 'docker build -t awareness .'
             }
         }
     }

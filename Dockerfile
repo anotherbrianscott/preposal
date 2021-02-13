@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 COPY main.py .
 
 ## Run application
-ENTRYPOINT [ "uvicorn", "main:app", "--port", "8080" ] --entrypoint
+CMD [ "uvicorn", "main:app", "--port", "8080" ] --entrypoint

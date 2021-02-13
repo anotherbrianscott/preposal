@@ -6,11 +6,6 @@ pipeline {
   }
   agent { dockerfile true }
   stages {
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/anotherbrianscott/preposal.git'
-      }
-    }
     stage('Building image') {
       steps{
         script {

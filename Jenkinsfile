@@ -35,12 +35,5 @@ pipeline {
       when {
       anyOf {
             branch 'master'
-      }
      }
-      steps{
-        sh "docker rmi $imagename:$BUILD_NUMBER"
-         sh "docker rmi $imagename:latest"
-
-      }
-    } // End of remove unused docker image for master
-  }  
+}

@@ -1,24 +1,20 @@
-node {    
-      def app     
-      agent { dockerfile true }
-      stage('Clone repository') {               
-             
-            checkout scm    
-      }     
-      stage('Build image') {         
-       
-            app = docker.build("dockerfile")    
-       }     
-      stage('Test image') {           
-            app.inside {            
-             
-             sh 'echo "Tests passed"'        
-            }    
-        }     
-       stage('Push image') {
-           docker.withRegistry('350919162912.dkr.ecr.us-west-2.amazonaws.com/awareness') {            
-       app.push("${env.BUILD_NUMBER}")            
-       app.push("latest")        
-              }    
-           }
+pipeline {
+  agent { docker { image 'python:3.7.2' } }
+  stages {
+    stage('build') {
+      steps {
+        sh 'pip install -r requirements.txt'
+      }
+    }
+    stage('test') {
+      steps {
+        sh 'python test.py'
+      }
+      post {
+        always {
+          junit 'test-reports/*.xml'
         }
+      }    
+    }
+  }
+}

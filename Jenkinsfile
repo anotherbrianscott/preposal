@@ -10,6 +10,12 @@ pipeline {
       steps {
         sh 'python test.py'
       }
+        
+    stage('deploy') {
+  steps {
+    echo 'deploying image to environment'
+  }
+}
       post {
         always {
           junit 'test-reports/*.xml'

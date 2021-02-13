@@ -1,5 +1,5 @@
 pipeline {
-    agent { dockerfile true }
+    agent { dockerfile true 
   stages {
     stage('build') {
       steps {
@@ -10,12 +10,6 @@ pipeline {
       steps {
         sh 'python test.py'
       }
-        
-    stage('deploy') {
-  steps {
-    echo 'deploying image to environment'
-  }
-}
       post {
         always {
           junit 'test-reports/*.xml'
@@ -23,4 +17,4 @@ pipeline {
       }    
     }
   }
-}
+}	}

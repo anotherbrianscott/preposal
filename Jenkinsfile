@@ -1,14 +1,3 @@
-pipeline {
-    agent { dockerfile true }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'python test.py'
-            }
-        }
-    }
-}
-
 node {    
       def app     
       agent { dockerfile true }
